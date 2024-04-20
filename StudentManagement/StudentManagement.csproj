@@ -4,6 +4,87 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-StudentManagement-f4847b2f-402d-43a6-aa15-4862410f1dab</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Admin\**" />
+    <Content Remove="Areas\Admin\**" />
+    <EmbeddedResource Remove="Areas\Admin\**" />
+    <None Remove="Areas\Admin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Areas\Admin\Controllers\ClassroomController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubjectController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeacherController.cs" />
+    <Compile Include="Areas\Admin\Models\ErrorViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.21" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.21" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.21" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.21" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.21" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StudentManagement.Service\StudentManagement.Service.csproj" />
+    <ProjectReference Include="..\StudentManagement.ViewModels\StudentManagement.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\lib\bootstrap\" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
+    <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
+    <Folder Include="wwwroot\lib\jquery-validation\" />
+    <Folder Include="wwwroot\lib\jquery-validation\dist\" />
+    <Folder Include="wwwroot\lib\jquery\" />
+    <Folder Include="wwwroot\lib\jquery\dist\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Classroom\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Classroom\Delete.cshtml" />
+    <None Include="Areas\Admin\Views\Classroom\Details.cshtml" />
+    <None Include="Areas\Admin\Views\Classroom\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\Classroom\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Post\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Post\Delete.cshtml" />
+    <None Include="Areas\Admin\Views\Post\Details.cshtml" />
+    <None Include="Areas\Admin\Views\Post\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\Post\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Post\Published.cshtml" />
+    <None Include="Areas\Admin\Views\Post\Unpublished.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Areas\Admin\Views\Student\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Student\Delete.cshtml" />
+    <None Include="Areas\Admin\Views\Student\Details.cshtml" />
+    <None Include="Areas\Admin\Views\Student\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\Student\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Subject\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Subject\Delete.cshtml" />
+    <None Include="Areas\Admin\Views\Subject\Details.cshtml" />
+    <None Include="Areas\Admin\Views\Subject\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\Subject\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Teacher\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Teacher\Delete.cshtml" />
+    <None Include="Areas\Admin\Views\Teacher\Details.cshtml" />
+    <None Include="Areas\Admin\Views\Teacher\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\Teacher\Index.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
+  </ItemGroup>
 
 </Project>

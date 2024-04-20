@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudentMangament.Core.Models
 {
@@ -17,9 +12,14 @@ namespace StudentMangament.Core.Models
         [StringLength(50)]
         public string Name { get; set; }
 
-        public string Email { get; set; }
+        [Required]
+        public DateTime DateofBirth { get; set; }
 
-        public DateTime DoB { get; set;}
+        public enum GenderChoice { Male, Female }
+
+        public GenderChoice Gender { get; set; }
+
+        public string PhoneNumber { get; set; }
 
         [ForeignKey("Classroom")]
         public int ClassroomId { get; set; }
