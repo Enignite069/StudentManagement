@@ -1,0 +1,24 @@
+﻿@model IEnumerable<StudentMangament.Core.Models.Post>
+@{
+    ViewData["Title"] = "All posts";
+}
+
+<h2 class="post-title">All posts!</h2>
+<hr class="my-4" />
+
+@foreach (var item in Model)
+{
+    <!-- Post preview-->
+    <div class="post-preview">
+        <a asp-controller="Post" asp-action="Details" asp-route-year="@item.PostedOn.Year" asp-route-month="@item.PostedOn.Month">
+            <h2 class="post-title">@item.Title</h2>
+            <h3 class="post-subtitle">@item.ShortDescription</h3>
+        </a>
+        <p class="post-meta">
+            Posted
+            on @item.PostedOn.Year
+        </p>
+    </div>
+    <!-- Divider-->
+    <hr class="my-4" />
+}

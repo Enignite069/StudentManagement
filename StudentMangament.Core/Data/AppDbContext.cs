@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StudentMangament.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudentMangament.Core.Data
 {
@@ -37,5 +32,7 @@ namespace StudentMangament.Core.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Classroom> Classrooms { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

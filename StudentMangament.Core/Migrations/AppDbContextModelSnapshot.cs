@@ -22,6 +22,21 @@ namespace StudentMangament.Core.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("ClassroomTeacher", b =>
+                {
+                    b.Property<int>("ClassroomsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeachersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClassroomsId", "TeachersId");
+
+                    b.HasIndex("TeachersId");
+
+                    b.ToTable("ClassroomTeacher");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -228,21 +243,11 @@ namespace StudentMangament.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("ClassroomId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TeacherId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ClassroomId");
-
-                    b.HasIndex("TeacherId");
 
                     b.ToTable("Classrooms");
 
@@ -251,6 +256,74 @@ namespace StudentMangament.Core.Migrations
                         {
                             Id = 1,
                             Name = "Test"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "6A"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "6B"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "6C"
+                        });
+                });
+
+            modelBuilder.Entity("StudentMangament.Core.Models.Post", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("PostContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PostedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Published")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ShortDescription")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Posts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PostContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            PostedOn = new DateTime(2024, 4, 20, 14, 26, 39, 477, DateTimeKind.Local).AddTicks(2443),
+                            Published = true,
+                            ShortDescription = "This is Test for Published Post",
+                            Title = "Published Test"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            PostContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            PostedOn = new DateTime(2024, 4, 20, 14, 26, 39, 477, DateTimeKind.Local).AddTicks(2451),
+                            Published = false,
+                            ShortDescription = "This is Test for Unpublished Post",
+                            Title = "Unpublished Test"
                         });
                 });
 
@@ -265,17 +338,20 @@ namespace StudentMangament.Core.Migrations
                     b.Property<int>("ClassroomId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DoB")
+                    b.Property<DateTime>("DateofBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -288,8 +364,61 @@ namespace StudentMangament.Core.Migrations
                         {
                             Id = 1,
                             ClassroomId = 1,
-                            DoB = new DateTime(2010, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Test",
+                            DateofBirth = new DateTime(2010, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Gender = 0,
+                            Name = "Test",
+                            PhoneNumber = "0123456789"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClassroomId = 2,
+                            DateofBirth = new DateTime(2012, 2, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Gender = 1,
+                            Name = "Truong Mai An",
+                            PhoneNumber = "0974172372"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClassroomId = 2,
+                            DateofBirth = new DateTime(2012, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Gender = 1,
+                            Name = "Nguyen Thi Hong Anh",
+                            PhoneNumber = "0768302645"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ClassroomId = 2,
+                            DateofBirth = new DateTime(2012, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Gender = 0,
+                            Name = "Tran Hoang Anh",
+                            PhoneNumber = "0365757462"
+                        });
+                });
+
+            modelBuilder.Entity("StudentMangament.Core.Models.Subject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subjects");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
                             Name = "Test"
                         });
                 });
@@ -302,21 +431,16 @@ namespace StudentMangament.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("DoB")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("YearOfBirth")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -326,10 +450,30 @@ namespace StudentMangament.Core.Migrations
                         new
                         {
                             Id = 1,
-                            DoB = new DateTime(2000, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Test",
+                            Gender = 0,
                             Name = "Test",
-                            Phone = "0123456789"
+                            YearOfBirth = 2023
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Gender = 1,
+                            Name = "Nguyen Thi Bich Ngoc",
+                            YearOfBirth = 1973
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Gender = 1,
+                            Name = "Nguyen Thi Phuong",
+                            YearOfBirth = 1978
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Gender = 0,
+                            Name = "Nguyen Thang Khoa",
+                            YearOfBirth = 1980
                         });
                 });
 
@@ -346,6 +490,36 @@ namespace StudentMangament.Core.Migrations
                     b.HasIndex("TeachersId");
 
                     b.ToTable("StudentTeacher");
+                });
+
+            modelBuilder.Entity("SubjectTeacher", b =>
+                {
+                    b.Property<int>("SubjectsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeachersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SubjectsId", "TeachersId");
+
+                    b.HasIndex("TeachersId");
+
+                    b.ToTable("SubjectTeacher");
+                });
+
+            modelBuilder.Entity("ClassroomTeacher", b =>
+                {
+                    b.HasOne("StudentMangament.Core.Models.Classroom", null)
+                        .WithMany()
+                        .HasForeignKey("ClassroomsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentMangament.Core.Models.Teacher", null)
+                        .WithMany()
+                        .HasForeignKey("TeachersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -399,17 +573,6 @@ namespace StudentMangament.Core.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StudentMangament.Core.Models.Classroom", b =>
-                {
-                    b.HasOne("StudentMangament.Core.Models.Classroom", null)
-                        .WithMany("Classrooms")
-                        .HasForeignKey("ClassroomId");
-
-                    b.HasOne("StudentMangament.Core.Models.Teacher", null)
-                        .WithMany("Classrooms")
-                        .HasForeignKey("TeacherId");
-                });
-
             modelBuilder.Entity("StudentMangament.Core.Models.Student", b =>
                 {
                     b.HasOne("StudentMangament.Core.Models.Classroom", "Classroom")
@@ -436,16 +599,24 @@ namespace StudentMangament.Core.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StudentMangament.Core.Models.Classroom", b =>
+            modelBuilder.Entity("SubjectTeacher", b =>
                 {
-                    b.Navigation("Classrooms");
+                    b.HasOne("StudentMangament.Core.Models.Subject", null)
+                        .WithMany()
+                        .HasForeignKey("SubjectsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Students");
+                    b.HasOne("StudentMangament.Core.Models.Teacher", null)
+                        .WithMany()
+                        .HasForeignKey("TeachersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("StudentMangament.Core.Models.Teacher", b =>
+            modelBuilder.Entity("StudentMangament.Core.Models.Classroom", b =>
                 {
-                    b.Navigation("Classrooms");
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }
